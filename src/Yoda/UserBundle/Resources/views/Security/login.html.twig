@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/user/css/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Wanna Register</h3>
+                <br>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('logout') }}"> Logout </a>
+                {% else %}
+                    <a class="login-cls" href="{{ path('user_register') }}"> Register </a>
+                {% endif %}
+            </div>
+
+            <div class="col-md-9 register-right">
+                <h2 class="register-heading">Enter Your Credentials</h2>
+                <div class="row register-form">
+
+                    <form action="{{ path('login_check') }}" method="post" class="registerForm">
+                        <div class="col-md-9" style="float: left">
+
+                            {% if error %}
+                                <div class="alert">
+                                    <span class="closebtn"
+                                          onclick="this.parentElement.style.display='none';">&times;</span>
+                                    {{ error.messageKey }}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" id="username" name="_username"  class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" name="_password" class="form-control"/>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">login</button>
+                            </div>
+                            <span class="reset-pwd-label">Forgot Password</span>
+                        </div>
+
+                    </form>
+
+                    <div class="forgetPasswordDiv">
+                        <div class="col-md-9" style="float: left">
+                            <div class="form-group">
+                                <label >Enter Email:</label>
+                                <input type="text" id="resetEamil" name="resetEamil" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label >Enter New Password:</label>
+                                <input type="password" id="resetPwd" name="resetPwd" profile=""  class="form-control"/>
+                            </div>
+
+                            <span id="ResetPwdMsg"> </span>
+
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-block resetPassword">Reset Password</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% include 'EventBundle:Event:footer.html.twig' %}
+
+{% endblock %}
+

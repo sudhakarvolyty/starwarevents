@@ -1,0 +1,118 @@
+{% block body %}
+    <div class="container profile-form">
+        {% include 'EventBundle:Event:header.html.twig' %}
+        <div class="inner-container">
+            <div class="col-md-3 col-sm-4 profile-divs profile-left">
+                <form name="ProfilePic" class="ProfilePic" action="" method="post">
+                    <div class="profile-Img">
+                        {% if userProfile %}
+                            {% if userProfile.profilePic %}
+                                <img src="{{ profilePicPath }}/{{ userProfile.profilePic }}" alt="Profile-Pic">
+                            {% else %}
+                                <img src="{{ imgAltPath }}" alt="{{ app.user }}">
+                            {% endif %}
+                        {% else %}
+                            <img src="{{ imgAltPath }}" alt="{{ app.user }}">
+                        {% endif %}
+
+                        <!--   <input type="button" class="btn btn-block btn-primary imgBtn" value="Change Picture"> -->
+                        <input type="file" name="Profile_Pic" class="browseProfilePic">
+                    </div>
+
+                    <div>
+                        <h4 class="heading-label"> {{ user |upper }} - Hosted Events</h4>
+                        <ul class="unordered-list">
+                            {% for event in events %}
+                                <li>
+                                    <a href="{{ path('event_show', { 'slug': event['slug'] }) }}"> {{ event['name'] }}</a>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-8 col-sm-8 profile-divs change-pwd-section">
+
+                <h3 class="profile-form-heading"> {{ app.user |upper }} - Profile</h3>
+                <hr>
+                {{ form_start(profile_form) }}
+
+                <div class="form-group">
+                    {{ form_label(profile_form.firstName) }}
+                    {{ form_widget(profile_form.firstName, { 'attr': {'class': 'form-control', 'required': 'false'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(profile_form.lastName) }}
+                    {{ form_widget(profile_form.lastName, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(profile_form.street1) }}
+                    {{ form_widget(profile_form.street1, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(profile_form.street2) }}
+                    {{ form_widget(profile_form.street2, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(profile_form.pincode) }}
+                    {{ form_widget(profile_form.pincode, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Update Profile">
+                </div>
+
+                {{ form_end(profile_form) }}
+                {% if app.session.flashbag.has('profileSuccess') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashbag.get('profileSuccess') %}
+                            {{ msg }}
+                            {{ app.session.flashbag.set('profileSuccess', '') }}
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div id="resetPassword" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Change Password</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <input type="text" id="resetPwd" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="button" class="resetPassword btn btn-primary" value="Change Password"
+                                       profile="yii">
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <span id="ResetPwdMsg"> </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% include 'EventBundle:Event:footer.html.twig' %}

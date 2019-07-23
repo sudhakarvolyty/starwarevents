@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/user/css/register.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Welcome</h3>
+                <p>You are 30 seconds away from blah blah!</p>
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('logout') }}"> Logout </a>
+                {% else %}
+                    <a class="login-cls" href="{{ path('login_form') }}"> Login </a>
+                {% endif %}
+            </div>
+
+            <div class="col-md-9 register-right">
+                <h2 class="register-heading">Fill up the below registeration form</h2>
+                <div class="row register-form">
+                    <form action="{{ path('user_register') }}" method="post">
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder':'Enter Username *'} }) }}
+                                {% if form_errors(form.username) %}<span
+                                        class="reg-err-msg">{{ form_errors(form.username) }} </span> {% endif %}
+                            </div>
+                            <div class="form-group">
+
+                                {{ form_widget(form.email, {'attr':{'class':'form-control', 'placeholder':'Enter Email *'}}) }}
+                                {% if form_errors(form.email) %}<span
+                                        class="reg-err-msg"> {{ form_errors(form.email) }} </span> {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form_widget(form.plainPassword.first, {'attr':{'class':'form-control', 'placeholder':'Enter Password *'}}) }}
+                                {% if form_errors(form.plainPassword.first) %}<span
+                                        class="reg-err-msg"> {{ form_errors(form.plainPassword.first) }} </span> {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_widget(form.plainPassword.second, {'attr':{'class':'form-control', 'placeholder':'Enter Confirm Password *'}}) }}
+                                {% if form_errors(form.plainPassword.second) %}<span
+                                        class="reg-err-msg"> {{ form_errors(form.plainPassword.second) }} </span> {% endif %}
+                            </div>
+
+                            {{ form_rest(form) }}
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Register"/>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

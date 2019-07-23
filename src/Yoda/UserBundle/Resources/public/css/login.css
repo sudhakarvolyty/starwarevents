@@ -1,0 +1,84 @@
+.login {
+    width: 500px;
+    margin: 100px auto;
+}
+
+.login article {
+    padding: 50px;
+    background: #ccc;
+
+}
+
+.login article label {
+    display: -moz-inline-box;
+    display: inline;
+    width: 160px;
+    font-size: 18px;
+}
+
+.login article input[type='text'], .login article input[type='password'], .login article input[type='submit'] {
+    border: 1px solid #999;
+    font-size: 24px;
+    padding: 5px;
+    width: 220px;
+}
+
+.login article form div {
+    margin-bottom: 5px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+.cred-err-msg {
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: #250f0f;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #e8948d; /* Red */
+    color: white;
+    margin-top: 8px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}

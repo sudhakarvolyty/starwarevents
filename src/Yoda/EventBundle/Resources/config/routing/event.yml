@@ -1,0 +1,55 @@
+event:
+  path:     /
+  defaults: { _controller: "EventBundle:Event:index" }
+
+event_show:
+  path:     /{slug}/show
+  defaults: { _controller: "EventBundle:Event:show" }
+
+event_new:
+  path:     /new
+  defaults: { _controller: "EventBundle:Event:new" }
+
+event_create:
+  path:     /create
+  defaults: { _controller: "EventBundle:Event:create" }
+  methods:  POST
+
+event_edit:
+  path:     /{slug}/edit
+  defaults: { _controller: "EventBundle:Event:edit" }
+
+event_update:
+  path:     /{slug}/update
+  defaults: { _controller: "EventBundle:Event:update" }
+  methods:  [POST, PUT]
+
+event_delete:
+  path:     /{slug}/delete
+  defaults: { _controller: "EventBundle:Event:delete" }
+  methods:  [POST, DELETE]
+
+event_attend:
+  path:     /{slug}/attend.{format}
+  defaults: { _controller: "EventBundle:Event:attend", format:html }
+  requirements:
+    format: json
+
+event_unattend:
+  path:     /{slug}/unattend.{format}
+  defaults: { _controller: "EventBundle:Event:unattend", format:html }
+  requirements:
+    format: json
+
+event_report_generate:
+  path: /events/report/recentlyUpdated.csv
+  defaults: { _controller: "EventBundle:Report:updatedEvents"}
+
+
+user_profile:
+  path:     /user/profile
+  defaults: { _controller: "UserBundle:User:profile" }
+
+user/updateProfilePic:
+  path: /user/updateProfilePic
+  defaults: { _controller: "UserBundle:User:updateProfilePic" }

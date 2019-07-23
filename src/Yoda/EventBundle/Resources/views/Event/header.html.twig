@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/user/css/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+
+    <p class="text-right">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a href="/">View Events | </a>
+            <span class="reset-popup-label" data-toggle="modal" data-target="#resetPassword">Change Password | </span>
+            <a href="{{ path('user_profile') }}">{{ app.user }}</a>
+            <a href="{{ path('logout') }}"> | Logout </a>
+        {% else %}
+            <a href="{{ path('login_form') }}"> Login </a> |
+            <a href="{{ path('user_register') }}">Register</a>
+        {% endif %}
+    </p>
+{% endblock %}

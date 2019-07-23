@@ -1,0 +1,30 @@
+security:
+    encoders:
+        Yoda\userBundle\Entity\User: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_EVENT_CREATE]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_USER:  [ROLE_USER]
+
+    providers:
+        our_database_user:
+            entity: { class: UserBundle:User }
+
+    firewalls:
+        secured_area:
+            pattern:    ^/
+            form_login:
+                check_path: login_check
+                login_path: /login_form
+            logout:
+                path:   logout   #a route name
+                target: event   #a route for our home page
+            anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/new, roles: ROLE_USER}
+        - { path: ^/create, roles: ROLE_USER}
+        - { path: ^/user/profile, roles: ROLE_USER}

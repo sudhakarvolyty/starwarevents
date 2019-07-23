@@ -1,0 +1,4 @@
+services:
+  user_register_manager:
+     class: Yoda\UserBundle\Services\UserManager
+     arguments: [@doctrine.orm.entity_manager, @router, @security.encoder_factory, @security.token_storage]

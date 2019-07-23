@@ -1,0 +1,3 @@
+Yoda\UserBundle\Entity\User:
+  constraints:
+    - Callback: [Yoda\UserBundle\Validations\UserRegistration, validateUserName]

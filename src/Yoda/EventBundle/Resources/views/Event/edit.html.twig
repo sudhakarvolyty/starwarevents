@@ -1,0 +1,23 @@
+{% block body %}
+
+
+<div class="container profile-form">
+
+    {% include 'EventBundle:Event:header.html.twig' %}
+
+    <h1>Event edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('event') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+</div>
+    {% include 'EventBundle:Event:footer.html.twig' %}
+
+{% endblock %}
